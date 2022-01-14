@@ -13,11 +13,11 @@
     // NCMB アクセスの準備
     let ncmb = new NCMB(appKey, clientKey);
     // 本アプリで使うクラスの指定。const は定数の宣言。変更できない変数と思えば良い。
-    const db = "m";
+    const db = "f";
 
     function fetchAll() {
       let TestDataClass = ncmb.DataStore(db);
-      TestDataClass.order("name",false).fetchAll()
+      TestDataClass.order("food",false).fetchAll()
         .then(function(results) {
           showResults(results);
         })
@@ -61,14 +61,13 @@
 
     function showResults(results) {
       // テーブルのヘッダを生成
-      let msg = "<table><tr><th>name</th><th>Lvl</th><th>attack</th><th>defence</th></tr>";
+      let msg = "<table><tr><th>name</th><th>value</th><th>calorie</th></tr>";
       for (let i = 0; i < results.length; i++) {
         // 各データを収めた表の列を生成
         msg += "<tr>";
-        msg += "<td>" + results[i].name + "</td>";
-        msg += "<td class='num'>" + results[i].level + "</td>";
-        msg += "<td class='num'>" + results[i].attack + "</td>";
-        msg += "<td class='num'>" + results[i].defence + "</td>";
+        msg += "<td>" + results[i].food + "</td>";
+        msg += "<td class='num'>" + results[i].value + "</td>";
+        msg += "<td class='num'>" + results[i].calorie + "</td>";
         msg += "</tr>";
       }
       // テーブルのテイラを生成
@@ -79,18 +78,25 @@
 </head>
 
 <body>
-  <h1>mBaaS search</h1>
+  <h1>food search</h1>
   <div>
-    <label for="name">name:</label>
-    <input id="name" type="text" placeholder="monster name">
+    <label for="name">food:</label>
+    <input id="name" type="text" placeholder="food name">
   </div>
   <div>
-    <label for="level">level:</label>
-    <input id="level" type="number" placeholder="monster level">
+    <label for="value">value:</label>
+    <input id="value" type="number" placeholder="food value">
+  </div>
+  <div>
+    <label for="calorie">calorie:</label>
+    <input id="calorie" type="number" placeholder="food calorie">
   </div>
   <div id="button">
     <button class="btn" onclick="fetchAll()">Fetch All</button>
     <button class="btn" onclick="searchName()">Name</button><br>
+    <button class="btn" onclick="searchLevelLT()">Level &lt</button>
+    <button class="btn" onclick="searchLevel()">Level</button>
+    <button class="btn" onclick="searchLevelGT()">Level &gt</button><br>
     <button class="btn" onclick="searchLevelLT()">Level &lt</button>
     <button class="btn" onclick="searchLevel()">Level</button>
     <button class="btn" onclick="searchLevelGT()">Level &gt</button>
