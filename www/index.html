@@ -17,43 +17,43 @@
 
     function fetchAll() {
       let TestDataClass = ncmb.DataStore(db);
-      TestDataClass.order("food",false).fetchAll()
+      TestDataClass.order("food", false).fetchAll()
         .then(function(results) {
           showResults(results);
         })
     }
 
-    function searchName() {
+    function searchfood() {
+      let food = $("#food").val();
       let TestDataClass = ncmb.DataStore(db);
-      let name = $("#name").val();
-      TestDataClass.equalTo("name",name).fetchAll()
+      TestDataClass.equalTo("food", food).fetchAll()
         .then(function(results) {
           showResults(results);
         })
     }
 
-    function searchLevel() {
+    function searchvalue() {
       let TestDataClass = ncmb.DataStore(db);
-      let level = parseInt($("#level").val());
-      TestDataClass.equalTo("level",level).fetchAll()
+      let value = parseInt($("#value").val());
+      TestDataClass.equalTo("value", value).fetchAll()
         .then(function(results) {
           showResults(results);
         })
     }
 
-    function searchLevelLT() {
+    function searchvalueLT() {
       let TestDataClass = ncmb.DataStore(db);
-      let level = parseInt($("#level").val());
-      TestDataClass.lessThan("level",level).order("level",false).fetchAll()
+      let value = parseInt($("#value").val());
+      TestDataClass.lessThan("value", value).order("value", false).fetchAll()
         .then(function(results) {
           showResults(results);
         })
     }
 
-    function searchLevelGT() {
+    function searchvalueGT() {
       let TestDataClass = ncmb.DataStore(db);
-      let level = parseInt($("#level").val());
-      TestDataClass.greaterThan("level",level).order("level",false).fetchAll()
+      let value = parseInt($("#value").val());
+      TestDataClass.greaterThan("value", value).order("value", false).fetchAll()
         .then(function(results) {
           showResults(results);
         })
@@ -93,13 +93,13 @@
   </div>
   <div id="button">
     <button class="btn" onclick="fetchAll()">Fetch All</button>
-    <button class="btn" onclick="searchName()">Name</button><br>
-    <button class="btn" onclick="searchLevelLT()">Level &lt</button>
-    <button class="btn" onclick="searchLevel()">Level</button>
-    <button class="btn" onclick="searchLevelGT()">Level &gt</button><br>
-    <button class="btn" onclick="searchLevelLT()">Level &lt</button>
-    <button class="btn" onclick="searchLevel()">Level</button>
-    <button class="btn" onclick="searchLevelGT()">Level &gt</button>
+    <button class="btn" onclick="searchfood()">food</button><br>
+    <button class="btn" onclick="searchvalueLT()">value &lt</button>
+    <button class="btn" onclick="searchvalue()">value</button>
+    <button class="btn" onclick="searchvalueGT()">value &gt</button><br>
+    <button class="btn" onclick="searchLevelLT()">calorie &lt</button>
+    <button class="btn" onclick="searchLevel()">calorie</button>
+    <button class="btn" onclick="searchLevelGT()">calorie &gt</button>
   </div>
   <div id="message">message area</div>
 </body>
