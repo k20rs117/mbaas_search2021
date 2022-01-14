@@ -24,8 +24,8 @@
     }
 
     function searchfood() {
-      let food = $("#food").val();
       let TestDataClass = ncmb.DataStore(db);
+      let food = $("#food").val();
       TestDataClass.equalTo("food", food).fetchAll()
         .then(function(results) {
           showResults(results);
@@ -54,6 +54,33 @@
       let TestDataClass = ncmb.DataStore(db);
       let value = parseInt($("#value").val());
       TestDataClass.greaterThan("value", value).order("value", false).fetchAll()
+        .then(function(results) {
+          showResults(results);
+        })
+    }
+
+    function searchcalorie() {
+      let TestDataClass = ncmb.DataStore(db);
+      let calorie = parseInt($("#calorie").val());
+      TestDataClass.equalTo("calorie", calorie).fetchAll()
+        .then(function(results) {
+          showResults(results);
+        })
+    }
+
+    function searchcalorieLT() {
+      let TestDataClass = ncmb.DataStore(db);
+      let calorie = parseInt($("#calorie").val());
+      TestDataClass.lessThan("calorie", calorie).order("calorie", false).fetchAll()
+        .then(function(results) {
+          showResults(results);
+        })
+    }
+
+    function searchcalorieGT() {
+      let TestDataClass = ncmb.DataStore(db);
+      let calorie = parseInt($("#calorie").val());
+      TestDataClass.greaterThan("calorie", calorie).order("calorie", false).fetchAll()
         .then(function(results) {
           showResults(results);
         })
@@ -97,9 +124,9 @@
     <button class="btn" onclick="searchvalueLT()">value &lt</button>
     <button class="btn" onclick="searchvalue()">value</button>
     <button class="btn" onclick="searchvalueGT()">value &gt</button><br>
-    <button class="btn" onclick="searchLevelLT()">calorie &lt</button>
-    <button class="btn" onclick="searchLevel()">calorie</button>
-    <button class="btn" onclick="searchLevelGT()">calorie &gt</button>
+    <button class="btn" onclick="searchcalorieLT()">calorie &lt</button>
+    <button class="btn" onclick="searchcalorie()">calorie</button>
+    <button class="btn" onclick="searchcalorieGT()">calorie &gt</button>
   </div>
   <div id="message">message area</div>
 </body>
