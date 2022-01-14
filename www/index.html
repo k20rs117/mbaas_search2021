@@ -26,11 +26,12 @@
     function searchfood() {
       let TestDataClass = ncmb.DataStore(db);
       let food = $("#food").val();
-      TestDataClass.equalTo("food", food).fetchAll()
+      TestDataClass.regularExpressionTo("food", food).fetchAll()
         .then(function(results) {
           showResults(results);
         })
     }
+
 
     function searchvalue() {
       let TestDataClass = ncmb.DataStore(db);
@@ -107,8 +108,8 @@
 <body>
   <h1>food search</h1>
   <div>
-    <label for="name">food:</label>
-    <input id="name" type="text" placeholder="food name">
+    <label for="food">food:</label>
+    <input id="food" type="text" placeholder="food name">
   </div>
   <div>
     <label for="value">value:</label>
